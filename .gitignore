@@ -1,0 +1,64 @@
+# OS junk files
+.DS_Store
+Thumbs.db
+
+# IDE specific
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.vs/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+logs/
+
+# CLIENT (React)
+client/node_modules/
+client/.pnp
+client/.pnp.js
+client/coverage/
+client/build/
+client/dist/
+client/.env
+client/*.env
+client/**/.env
+client/.env.local
+client/.env.development.local
+client/.env.test.local
+client/.env.production.local
+
+# SERVER (ASP.NET MVC)
+server/bin/
+server/obj/
+server/wwwroot/
+!server/wwwroot/index.html
+server/*.user
+server/*.rsuser
+server/.vs/
+*.vc.db
+*.vsp
+*.vspx
+*.nupkg
+*.snupkg
+*.nuspec
+packages/
+*.dll
+*.exe
+*.mdf
+*.ldf
+*.bak
+*.tmp
+
+# Global .NET artifacts
+project.lock.json
+project.fragment.lock.json
+artifacts/
+.idea/
+*.sln.iml
