@@ -26,7 +26,7 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <Association Name="FK_CFMSurvey_CreatedByUser">
           <End Role="CFMUser" Type="Self.CFMUser" Multiplicity="1" />
@@ -91,7 +91,7 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="CFMSurveys" Relationship="Self.FK_Survey_CreatedBy" FromRole="CFMUser" ToRole="CFMSurvey" />
           <NavigationProperty Name="CFMSurveys1" Relationship="Self.FK_Survey_ModifiedBy" FromRole="CFMUser" ToRole="CFMSurvey" />
         </EntityType>

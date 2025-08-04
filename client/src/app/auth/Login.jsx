@@ -1,10 +1,13 @@
 import React from 'react';
 import { useState } from 'react';
 import { Eye, EyeOff } from 'lucide-react';
-import { Button } from '../../components/ui/Button';
-import { Input } from '../../components/ui/Input';
-import { Carousel } from '../../components/ui/Carousel';
-import { Checkbox } from '../../components/ui/Checkbox';
+import {
+  Button,
+  Input,
+  Carousel,
+  Checkbox,
+  useToastHelpers,
+} from '../../components/ui';
 
 const carouselSlides = [
   {
@@ -32,11 +35,65 @@ export const LoginPage = ({ onLogin }) => {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const { success, danger } = useToastHelpers();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    onLogin(username, password, rememberMe);
+    setLoading(true);
+
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}/API/User/Login`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            Username: username,
+            Password: password,
+          }),
+        }
+      );
+
+      const data = await response.json();
+
+      if (response.ok && data.Result) {
+        if (rememberMe) {
+          localStorage.setItem('rememberedUsername', username);
+        } else {
+          localStorage.removeItem('rememberedUsername');
+        }
+
+        success('Login successful!');
+        onLogin(data.Result);
+      } else {
+        danger('Login failed.', 'Invalid email or password.');
+      }
+    } catch (err) {
+      danger('Network error.', 'Please check your connection and try again.');
+    } finally {
+      setLoading(false);
+    }
   };
+
+  React.useEffect(() => {
+    const rememberedUsername = localStorage.getItem('rememberedUsername');
+    if (rememberedUsername) {
+      setUsername(rememberedUsername);
+      setRememberMe(true);
+    }
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        Loading...
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen flex sm:flex-row">

@@ -15,5 +15,11 @@ namespace CommonLib.ResultCodes
 
         [Description("An unexpected error occurred.")]
         UnExpectedError = 3,
+
+        [Description("Duplicate data found.")]
+        DuplicateData = 4,
+
+        [Description("Invalid Credentials.")]
+        InvalidCredentials = 5,
     }
 }

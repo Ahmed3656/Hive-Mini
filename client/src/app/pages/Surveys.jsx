@@ -10,18 +10,18 @@ import {
   Copy,
   Trash2,
 } from 'lucide-react';
-import { Button } from '../../components/ui/Button';
-import { Input } from '../../components/ui/Input';
-import { Badge } from '../../components/ui/Badge';
 import {
+  Button,
+  Input,
+  Badge,
   Table,
   TableHeader,
   TableBody,
   TableRow,
   TableHead,
   TableCell,
-} from '../../components/ui/Table';
-import { IconButton } from '../../components/ui/IconButton';
+  IconButton,
+} from '../../components/ui';
 
 const survey = {
   title: 'IST Survey - Email I have created',

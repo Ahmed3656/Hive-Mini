@@ -9,6 +9,7 @@ import {
 import './index.css';
 
 import { App, Surveys, ErrorPage } from './app/';
+import { ToastProvider } from './components/ui/Toast';
 
 const router = createBrowserRouter([
   {
@@ -89,6 +90,8 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <ToastProvider>
+      <RouterProvider router={router} />
+    </ToastProvider>
   </React.StrictMode>
 );

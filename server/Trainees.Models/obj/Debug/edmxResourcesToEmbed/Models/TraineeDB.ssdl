@@ -21,7 +21,7 @@
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="100" Nullable="false" />
   </EntityType>
   <Association Name="FK_CFMSurvey_CreatedByUser">
     <End Role="CFMUser" Type="Self.CFMUser" Multiplicity="1" />
