@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyWebApi", "MyWebApi\MyWebApi.csproj", "{6E3BDAB5-7A6A-4DB0-9F11-B45C7E907DAE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trainees.Models", "Trainees.Models\Trainees.Models.csproj", "{D5637CEA-46E7-4F28-A544-F6A1386BE0B9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CommonLibraries", "CommonLibraries", "{1945A9BC-2595-4D0D-992E-BD1743ACC7CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBConnectionStringHelper", "CommonLibraries\DBConnectionStringHelper\DBConnectionStringHelper.csproj", "{CB3AC8B5-C059-44D9-9A22-93C8E818147E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonLib", "CommonLibraries\CommonLib\CommonLib.csproj", "{09D2645C-7254-4471-837E-3C733925ACE1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapperHelper", "CommonLibraries\MapperHelper\MapperHelper.csproj", "{478C920C-DACE-466B-B902-987015E07342}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6E3BDAB5-7A6A-4DB0-9F11-B45C7E907DAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E3BDAB5-7A6A-4DB0-9F11-B45C7E907DAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E3BDAB5-7A6A-4DB0-9F11-B45C7E907DAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E3BDAB5-7A6A-4DB0-9F11-B45C7E907DAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5637CEA-46E7-4F28-A544-F6A1386BE0B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5637CEA-46E7-4F28-A544-F6A1386BE0B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5637CEA-46E7-4F28-A544-F6A1386BE0B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5637CEA-46E7-4F28-A544-F6A1386BE0B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB3AC8B5-C059-44D9-9A22-93C8E818147E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB3AC8B5-C059-44D9-9A22-93C8E818147E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB3AC8B5-C059-44D9-9A22-93C8E818147E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB3AC8B5-C059-44D9-9A22-93C8E818147E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09D2645C-7254-4471-837E-3C733925ACE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09D2645C-7254-4471-837E-3C733925ACE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09D2645C-7254-4471-837E-3C733925ACE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09D2645C-7254-4471-837E-3C733925ACE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{478C920C-DACE-466B-B902-987015E07342}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{478C920C-DACE-466B-B902-987015E07342}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{478C920C-DACE-466B-B902-987015E07342}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{478C920C-DACE-466B-B902-987015E07342}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CB3AC8B5-C059-44D9-9A22-93C8E818147E} = {1945A9BC-2595-4D0D-992E-BD1743ACC7CC}
+		{09D2645C-7254-4471-837E-3C733925ACE1} = {1945A9BC-2595-4D0D-992E-BD1743ACC7CC}
+		{478C920C-DACE-466B-B902-987015E07342} = {1945A9BC-2595-4D0D-992E-BD1743ACC7CC}
+	EndGlobalSection
+EndGlobal

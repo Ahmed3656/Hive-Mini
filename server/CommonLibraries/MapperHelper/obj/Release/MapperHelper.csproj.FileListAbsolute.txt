@@ -1,0 +1,12 @@
+D:\HiveCFMRJB.Main\HiveCFM-Dev-ReleaseV2.0\CommonLibraries\MapperHelper\bin\Release\MapperHelper.dll
+D:\HiveCFMRJB.Main\HiveCFM-Dev-ReleaseV2.0\CommonLibraries\MapperHelper\bin\Release\MapperHelper.pdb
+D:\HiveCFMRJB.Main\HiveCFM-Dev-ReleaseV2.0\CommonLibraries\MapperHelper\bin\Release\AutoMapper.dll
+D:\HiveCFMRJB.Main\HiveCFM-Dev-ReleaseV2.0\CommonLibraries\MapperHelper\bin\Release\log4net.dll
+D:\HiveCFMRJB.Main\HiveCFM-Dev-ReleaseV2.0\CommonLibraries\MapperHelper\bin\Release\AutoMapper.pdb
+D:\HiveCFMRJB.Main\HiveCFM-Dev-ReleaseV2.0\CommonLibraries\MapperHelper\bin\Release\AutoMapper.xml
+D:\HiveCFMRJB.Main\HiveCFM-Dev-ReleaseV2.0\CommonLibraries\MapperHelper\bin\Release\log4net.xml
+D:\HiveCFMRJB.Main\HiveCFM-Dev-ReleaseV2.0\CommonLibraries\MapperHelper\obj\Release\MapperHelper.csproj.AssemblyReference.cache
+D:\HiveCFMRJB.Main\HiveCFM-Dev-ReleaseV2.0\CommonLibraries\MapperHelper\obj\Release\MapperHelper.csproj.CoreCompileInputs.cache
+D:\HiveCFMRJB.Main\HiveCFM-Dev-ReleaseV2.0\CommonLibraries\MapperHelper\obj\Release\MapperHe.D234CA60.Up2Date
+D:\HiveCFMRJB.Main\HiveCFM-Dev-ReleaseV2.0\CommonLibraries\MapperHelper\obj\Release\MapperHelper.dll
+D:\HiveCFMRJB.Main\HiveCFM-Dev-ReleaseV2.0\CommonLibraries\MapperHelper\obj\Release\MapperHelper.pdb

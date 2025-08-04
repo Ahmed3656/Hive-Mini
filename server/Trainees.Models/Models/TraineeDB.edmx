@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TraineeDB_DemoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CFMSurvey">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="ModifiedAt" Type="datetime" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="Type" Type="varchar" MaxLength="50" />
+          <Property Name="Language" Type="varchar" MaxLength="50" />
+          <Property Name="Responses" Type="int" />
+        </EntityType>
+        <EntityType Name="CFMUser">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CFMSurvey_CreatedByUser">
+          <End Role="CFMUser" Type="Self.CFMUser" Multiplicity="1" />
+          <End Role="CFMSurvey" Type="Self.CFMSurvey" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CFMUser">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CFMSurvey">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CFMSurvey_ModifiedByUser">
+          <End Role="CFMUser" Type="Self.CFMUser" Multiplicity="0..1" />
+          <End Role="CFMSurvey" Type="Self.CFMSurvey" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CFMUser">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CFMSurvey">
+              <PropertyRef Name="ModifiedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TraineeDB_DemoModelStoreContainer">
+          <EntitySet Name="CFMSurvey" EntityType="Self.CFMSurvey" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CFMUser" EntityType="Self.CFMUser" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CFMSurvey_CreatedByUser" Association="Self.FK_CFMSurvey_CreatedByUser">
+            <End Role="CFMUser" EntitySet="CFMUser" />
+            <End Role="CFMSurvey" EntitySet="CFMSurvey" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CFMSurvey_ModifiedByUser" Association="Self.FK_CFMSurvey_ModifiedByUser">
+            <End Role="CFMUser" EntitySet="CFMUser" />
+            <End Role="CFMSurvey" EntitySet="CFMSurvey" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TraineeDB_DemoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CFMSurvey">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedAt" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Language" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Responses" Type="Int32" />
+          <NavigationProperty Name="CFMUser" Relationship="Self.FK_Survey_CreatedBy" FromRole="CFMSurvey" ToRole="CFMUser" />
+          <NavigationProperty Name="CFMUser1" Relationship="Self.FK_Survey_ModifiedBy" FromRole="CFMSurvey" ToRole="CFMUser" />
+        </EntityType>
+        <EntityType Name="CFMUser">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CFMSurveys" Relationship="Self.FK_Survey_CreatedBy" FromRole="CFMUser" ToRole="CFMSurvey" />
+          <NavigationProperty Name="CFMSurveys1" Relationship="Self.FK_Survey_ModifiedBy" FromRole="CFMUser" ToRole="CFMSurvey" />
+        </EntityType>
+        <Association Name="FK_Survey_CreatedBy">
+          <End Role="CFMUser" Type="Self.CFMUser" Multiplicity="1" />
+          <End Role="CFMSurvey" Type="Self.CFMSurvey" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CFMUser">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CFMSurvey">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Survey_ModifiedBy">
+          <End Role="CFMUser" Type="Self.CFMUser" Multiplicity="0..1" />
+          <End Role="CFMSurvey" Type="Self.CFMSurvey" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CFMUser">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CFMSurvey">
+              <PropertyRef Name="ModifiedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TraineeDB_DemoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CFMSurveys" EntityType="Self.CFMSurvey" />
+          <EntitySet Name="CFMUsers" EntityType="Self.CFMUser" />
+          <AssociationSet Name="FK_Survey_CreatedBy" Association="Self.FK_Survey_CreatedBy">
+            <End Role="CFMUser" EntitySet="CFMUsers" />
+            <End Role="CFMSurvey" EntitySet="CFMSurveys" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Survey_ModifiedBy" Association="Self.FK_Survey_ModifiedBy">
+            <End Role="CFMUser" EntitySet="CFMUsers" />
+            <End Role="CFMSurvey" EntitySet="CFMSurveys" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TraineeDB_DemoModelStoreContainer" CdmEntityContainer="TraineeDB_DemoEntities">
+          <EntitySetMapping Name="CFMSurveys">
+            <EntityTypeMapping TypeName="TraineeDB_DemoModel.CFMSurvey">
+              <MappingFragment StoreEntitySet="CFMSurvey">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedAt" ColumnName="ModifiedAt" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Language" ColumnName="Language" />
+                <ScalarProperty Name="Responses" ColumnName="Responses" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CFMUsers">
+            <EntityTypeMapping TypeName="TraineeDB_DemoModel.CFMUser">
+              <MappingFragment StoreEntitySet="CFMUser">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

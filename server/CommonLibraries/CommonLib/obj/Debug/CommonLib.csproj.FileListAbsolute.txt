@@ -1,0 +1,15 @@
+D:\Trainees\TraineesApplication\CommonLibraries\CommonLib\bin\Debug\WinSCP.exe
+D:\Trainees\TraineesApplication\CommonLibraries\CommonLib\bin\Debug\CommonLib.dll
+D:\Trainees\TraineesApplication\CommonLibraries\CommonLib\bin\Debug\CommonLib.pdb
+D:\Trainees\TraineesApplication\CommonLibraries\CommonLib\bin\Debug\log4net.dll
+D:\Trainees\TraineesApplication\CommonLibraries\CommonLib\bin\Debug\Newtonsoft.Json.dll
+D:\Trainees\TraineesApplication\CommonLibraries\CommonLib\bin\Debug\WinSCPnet.dll
+D:\Trainees\TraineesApplication\CommonLibraries\CommonLib\bin\Debug\log4net.xml
+D:\Trainees\TraineesApplication\CommonLibraries\CommonLib\bin\Debug\Newtonsoft.Json.xml
+D:\Trainees\TraineesApplication\CommonLibraries\CommonLib\obj\Debug\CommonLib.csproj.AssemblyReference.cache
+D:\Trainees\TraineesApplication\CommonLibraries\CommonLib\obj\Debug\CommonLib.csproj.CoreCompileInputs.cache
+D:\Trainees\TraineesApplication\CommonLibraries\CommonLib\obj\Debug\CommonLib.csproj.Up2Date
+D:\Trainees\TraineesApplication\CommonLibraries\CommonLib\obj\Debug\CommonLib.dll
+D:\Trainees\TraineesApplication\CommonLibraries\CommonLib\obj\Debug\CommonLib.pdb
+D:\Trainees\TraineesApplication\CommonLibraries\CommonLib\bin\Debug\Renci.SshNet.dll
+D:\Trainees\TraineesApplication\CommonLibraries\CommonLib\bin\Debug\Renci.SshNet.xml

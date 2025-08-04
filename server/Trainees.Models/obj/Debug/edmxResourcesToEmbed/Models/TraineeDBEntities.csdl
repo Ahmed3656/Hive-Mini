@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TraineeDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CFMSurvey">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="ModifiedAt" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Language" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Responses" Type="Int32" />
+    <NavigationProperty Name="CFMUser" Relationship="Self.FK_Survey_CreatedBy" FromRole="CFMSurvey" ToRole="CFMUser" />
+    <NavigationProperty Name="CFMUser1" Relationship="Self.FK_Survey_ModifiedBy" FromRole="CFMSurvey" ToRole="CFMUser" />
+  </EntityType>
+  <EntityType Name="CFMUser">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="CFMSurveys" Relationship="Self.FK_Survey_CreatedBy" FromRole="CFMUser" ToRole="CFMSurvey" />
+    <NavigationProperty Name="CFMSurveys1" Relationship="Self.FK_Survey_ModifiedBy" FromRole="CFMUser" ToRole="CFMSurvey" />
+  </EntityType>
+  <Association Name="FK_Survey_CreatedBy">
+    <End Role="CFMUser" Type="Self.CFMUser" Multiplicity="1" />
+    <End Role="CFMSurvey" Type="Self.CFMSurvey" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CFMUser">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CFMSurvey">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Survey_ModifiedBy">
+    <End Role="CFMUser" Type="Self.CFMUser" Multiplicity="0..1" />
+    <End Role="CFMSurvey" Type="Self.CFMSurvey" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CFMUser">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CFMSurvey">
+        <PropertyRef Name="ModifiedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TraineeDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CFMSurveys" EntityType="Self.CFMSurvey" />
+    <EntitySet Name="CFMUsers" EntityType="Self.CFMUser" />
+    <AssociationSet Name="FK_Survey_CreatedBy" Association="Self.FK_Survey_CreatedBy">
+      <End Role="CFMUser" EntitySet="CFMUsers" />
+      <End Role="CFMSurvey" EntitySet="CFMSurveys" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Survey_ModifiedBy" Association="Self.FK_Survey_ModifiedBy">
+      <End Role="CFMUser" EntitySet="CFMUsers" />
+      <End Role="CFMSurvey" EntitySet="CFMSurveys" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
