@@ -11,10 +11,11 @@ import {
   Trash2,
 } from 'lucide-react';
 import {
+  Badge,
   Button,
   IconButton,
   Input,
-  Badge,
+  Pagination,
   Table,
   TableHeader,
   TableBody,
@@ -22,95 +23,10 @@ import {
   TableHead,
   TableCell,
   Tabs,
+  usePagination,
   useToastHelpers,
 } from '../../components/ui';
-
-const surveyData = [
-  {
-    id: 1,
-    title: 'IST Survey - Email I have created',
-    status: 'Scheduled',
-    createdBy: 'Basem Shawaly',
-    modifiedAt: '06/10/2022',
-    modifiedBy: 'Nermien Emad',
-    type: 'Web',
-    language: 'English',
-    responses: 153,
-    createdAt: '06/10/2022',
-    expires: '20/10/2022',
-    publish: '06/10/2022',
-  },
-  {
-    id: 2,
-    title: 'Customer Satisfaction Survey',
-    status: 'Published',
-    createdBy: 'Sarah Johnson',
-    modifiedAt: '05/10/2022',
-    modifiedBy: 'Mike Wilson',
-    type: 'Email',
-    language: 'English',
-    responses: 89,
-    createdAt: '01/10/2022',
-    expires: '15/11/2022',
-    publish: '05/10/2022',
-  },
-  {
-    id: 3,
-    title: 'Product Feedback Form',
-    status: 'Draft',
-    createdBy: 'Alex Chen',
-    modifiedAt: '04/10/2022',
-    modifiedBy: 'Alex Chen',
-    type: 'Web',
-    language: 'English',
-    responses: 0,
-    createdAt: '04/10/2022',
-    expires: '30/10/2022',
-    publish: 'Not set',
-  },
-  {
-    id: 4,
-    title: 'Employee Engagement Survey',
-    status: 'Archived',
-    createdBy: 'HR Team',
-    modifiedAt: '01/09/2022',
-    modifiedBy: 'Jennifer Davis',
-    type: 'Internal',
-    language: 'English',
-    responses: 245,
-    createdAt: '15/08/2022',
-    expires: '15/09/2022',
-    publish: '20/08/2022',
-  },
-  {
-    id: 5,
-    title: 'Market Research Survey',
-    status: 'Published',
-    createdBy: 'Marketing Team',
-    modifiedAt: '03/10/2022',
-    modifiedBy: 'Tom Brown',
-    type: 'Web',
-    language: 'English',
-    responses: 312,
-    createdAt: '25/09/2022',
-    expires: '25/11/2022',
-    publish: '01/10/2022',
-  },
-  {
-    id: 6,
-    title: 'Website Usability Test',
-    status: 'Scheduled',
-    createdBy: 'UX Team',
-    modifiedAt: '06/10/2022',
-    modifiedBy: 'Lisa Wang',
-    type: 'Web',
-    language: 'English',
-    responses: 0,
-    createdAt: '06/10/2022',
-    expires: '20/10/2022',
-    publish: '08/10/2022',
-  },
-];
+import { surveyData } from '../../constants';
 
 export const Surveys = () => {
   const [activeTab, setActiveTab] = useState('All');
@@ -162,6 +78,9 @@ export const Surveys = () => {
     return filtered;
   }, [activeTab, searchTerm]);
 
+  const { currentPage, setCurrentPage, paginatedData, totalItems } =
+    usePagination(filteredSurveys, 8);
+
   const handleCreateSurvey = () => {
     success(
       'Survey Created!',
@@ -190,7 +109,9 @@ export const Surveys = () => {
   const handleTabChange = (tabId) => {
     setActiveTab(tabId);
     setSearchTerm('');
+    setCurrentPage(1);
   };
+
   return (
     <div className="p-4 sm:p-6">
       {/* Header */}
@@ -209,7 +130,11 @@ export const Surveys = () => {
 
       {/* Tabs */}
       <div className="mb-6">
-        <Tabs tabs={tabs} defaultTab="All" onTabChange={handleTabChange} />
+        <Tabs
+          tabs={tabs}
+          defaultTab={activeTab}
+          onTabChange={handleTabChange}
+        />
       </div>
 
       {/* Search */}
@@ -267,8 +192,8 @@ export const Surveys = () => {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {filteredSurveys.length > 0 ? (
-                filteredSurveys.map((survey) => (
+              {paginatedData.length > 0 ? (
+                paginatedData.map((survey) => (
                   <TableRow key={survey.id}>
                     <TableCell>
                       <div>
@@ -389,23 +314,12 @@ export const Surveys = () => {
         </div>
 
         {/* Pagination */}
-        <div className="bg-gray-50 px-4 py-3 border-t border-gray-200 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="text-sm text-gray-700 order-2 sm:order-1">
-            Showing 1 to 8 of 8 entries
-          </div>
-          <div className="flex space-x-1 order-1 sm:order-2">
-            {[1, 2, 3, 4, 5, 6].map((page) => (
-              <Button
-                key={page}
-                variant={page === 1 ? 'primary' : 'ghost'}
-                size="sm"
-                className="w-8 h-8"
-              >
-                {page}
-              </Button>
-            ))}
-          </div>
-        </div>
+        <Pagination
+          currentPage={currentPage}
+          totalItems={totalItems}
+          itemsPerPage={8}
+          onPageChange={setCurrentPage}
+        />
       </div>
     </div>
   );

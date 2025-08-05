@@ -4,6 +4,7 @@ export * from './Carousel';
 export * from './Checkbox';
 export * from './IconButton';
 export * from './Input';
+export * from './Pagination';
 export * from './Table';
 export * from './Tabs';
 export * from './Toast';

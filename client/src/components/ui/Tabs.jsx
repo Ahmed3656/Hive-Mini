@@ -5,10 +5,10 @@ export const Tabs = ({ tabs, defaultTab, onTabChange, className = '' }) => {
   const [activeTab, setActiveTab] = useState(defaultTab || tabs[0]?.id || '');
 
   useEffect(() => {
-    if (defaultTab && defaultTab !== activeTab) {
+    if (defaultTab !== undefined) {
       setActiveTab(defaultTab);
     }
-  }, [activeTab, defaultTab]);
+  }, [defaultTab]);
 
   const handleTabClick = (tabId) => {
     setActiveTab(tabId);
