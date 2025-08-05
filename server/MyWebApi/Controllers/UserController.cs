@@ -55,7 +55,6 @@ namespace MyWebApi.Controllers
             }
         }
 
-        // soft del, hard del, insert, update, login
         [HttpGet]
         [Route("API/User/GetById/{id}")]
         public IHttpActionResult GetById(int id)

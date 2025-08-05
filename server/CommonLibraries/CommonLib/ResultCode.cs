@@ -16,10 +16,19 @@ namespace CommonLib.ResultCodes
         [Description("An unexpected error occurred.")]
         UnExpectedError = 3,
 
+        [Description("Invalid input data.")]
+        InvalidInputData = 4,
+
         [Description("Duplicate data found.")]
-        DuplicateData = 4,
+        DuplicateData = 5,
+
+        [Description("User does not exist in the database. Please check the provided ID.")]
+        UserNotExist = 6,
 
         [Description("Invalid Credentials.")]
-        InvalidCredentials = 5,
+        InvalidCredentials = 7,
+
+        [Description("Survey does not exist in the database. Please check the provided ID.")]
+        SurveyNotExist = 8,
     }
 }

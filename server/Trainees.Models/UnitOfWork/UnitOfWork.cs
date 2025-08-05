@@ -1,9 +1,9 @@
-﻿using  Trainees.Models.Interfaces.Base;
-using  Trainees.Models.Interfaces.RepositoryInterfaces;
-using  Trainees.Models.Models;
-using  Trainees.Models.Repositories;
+﻿using Trainees.Models.Interfaces.Base;
+using Trainees.Models.Interfaces.RepositoryInterfaces;
+using Trainees.Models.Models;
+using Trainees.Models.Repositories;
 
-namespace  Trainees.Models.UnitOfWork
+namespace Trainees.Models.UnitOfWork
 {
     public class UnitOfWork : IUnitOfWork
     {
@@ -13,10 +13,12 @@ namespace  Trainees.Models.UnitOfWork
         {
             _context = context;
             CFMUsers = new CFMUserRepository(_context);
+            CFMSurveys = new CFMSurveyRepository(_context);
         }
 
         #region repositories
         public ICFMUserRepository CFMUsers { get; private set; }
+        public ICFMSurveyRepository CFMSurveys { get; private set; }
         #endregion
 
         public int Complete()
