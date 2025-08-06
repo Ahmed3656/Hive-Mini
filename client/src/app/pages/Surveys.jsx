@@ -28,7 +28,7 @@ import {
   usePagination,
   useToastHelpers,
 } from '../../components/ui';
-import { CreateSurveyModal } from '../../components/core';
+import { CreateSurveyModal, ViewSurveyModal } from '../../components/core';
 import { useGlobalLoading } from '../../components/shared';
 
 // API service functions
@@ -84,6 +84,7 @@ export const Surveys = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [dateFilter, setDateFilter] = useState('');
   const [surveys, setSurveys] = useState([]);
+  const [selectedSurvey, setSelectedSurvey] = useState(null);
 
   const { success, danger, warning, info } = useToastHelpers();
   const { startLoading, stopLoading } = useGlobalLoading();
@@ -91,6 +92,11 @@ export const Surveys = () => {
     isOpen: isCreateModalOpen,
     openModal: openCreateModal,
     closeModal: closeCreateModal,
+  } = useModal();
+  const {
+    isOpen: isViewModalOpen,
+    openModal: openViewModal,
+    closeModal: closeViewModal,
   } = useModal();
 
   const fetchSurveys = useCallback(async () => {
@@ -198,6 +204,11 @@ export const Surveys = () => {
 
   const handleCreateSurvey = () => {
     openCreateModal();
+  };
+
+  const handleViewSurvey = (survey) => {
+    setSelectedSurvey(survey);
+    openViewModal();
   };
 
   const handleDeleteSurvey = async (survey) => {
@@ -427,7 +438,7 @@ export const Surveys = () => {
                           <IconButton
                             title="View"
                             size="sm"
-                            // onClick={() => handleViewSurvey(survey)}
+                            onClick={() => handleViewSurvey(survey)}
                           >
                             <Eye size={14} className="sm:w-4 sm:h-4" />
                           </IconButton>
@@ -513,6 +524,14 @@ export const Surveys = () => {
           isOpen={isCreateModalOpen}
           onClose={closeCreateModal}
           onSurveyCreated={fetchSurveys}
+        />
+
+        {/* View Survey Modal */}
+        <ViewSurveyModal
+          isOpen={isViewModalOpen}
+          onClose={closeViewModal}
+          survey={selectedSurvey}
+          onDelete={handleDeleteSurvey}
         />
       </div>
     </div>

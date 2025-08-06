@@ -9,6 +9,7 @@ import {
   useToastHelpers,
 } from '../../components/ui';
 import { useGlobalLoading } from '../../components/shared';
+import { ConfirmAction } from './ConfirmAction';
 import {
   STATUS_OPTIONS,
   TYPE_OPTIONS,
@@ -237,33 +238,14 @@ export const CreateSurveyModal = ({ isOpen, onClose, onSurveyCreated }) => {
         </ModalFooter>
       </form>
       {showCancelConfirm && (
-        <div className="absolute inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 shadow-lg max-w-sm w-full">
-            <h3 className="text-lg font-medium text-gray-900 mb-3">
-              Discard changes?
-            </h3>
-            <p className="text-sm text-gray-600 mb-5">
-              You have unsaved changes. Are you sure you want to cancel?
-            </p>
-            <div className="flex justify-end space-x-3">
-              <Button
-                variant="secondary"
-                onClick={() => setShowCancelConfirm(false)}
-              >
-                Keep Editing
-              </Button>
-              <Button
-                variant="danger"
-                onClick={() => {
-                  setShowCancelConfirm(false);
-                  onClose();
-                }}
-              >
-                Discard
-              </Button>
-            </div>
-          </div>
-        </div>
+        <ConfirmAction
+          action="cancel"
+          onCancel={() => setShowCancelConfirm(false)}
+          onConfirm={() => {
+            setShowCancelConfirm(false);
+            onClose();
+          }}
+        />
       )}
     </Modal>
   );
