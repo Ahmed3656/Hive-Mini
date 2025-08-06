@@ -308,3 +308,26 @@ export const surveyData = [
     publish: '28/07/2022',
   },
 ];
+
+export const STATUS_OPTIONS = [
+  { value: 'Draft', label: 'Draft' },
+  { value: 'Published', label: 'Published' },
+  { value: 'Scheduled', label: 'Scheduled' },
+  { value: 'Archived', label: 'Archived' },
+];
+
+export const TYPE_OPTIONS = [
+  { value: 'Web', label: 'Web Survey' },
+  { value: 'Email', label: 'Email Survey' },
+  { value: 'Internal', label: 'Internal Survey' },
+  { value: 'Mobile', label: 'Mobile Survey' },
+  { value: 'External', label: 'External Survey' },
+];
+
+export const LANGUAGE_OPTIONS = [
+  { value: 'English', label: 'English' },
+  { value: 'Arabic', label: 'Arabic' },
+  { value: 'French', label: 'French' },
+  { value: 'Spanish', label: 'Spanish' },
+  { value: 'German', label: 'German' },
+];

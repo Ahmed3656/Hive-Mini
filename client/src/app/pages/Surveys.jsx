@@ -23,15 +23,22 @@ import {
   TableHead,
   TableCell,
   Tabs,
+  useModal,
   usePagination,
   useToastHelpers,
 } from '../../components/ui';
+import { CreateSurveyModal } from '../../components/core';
 import { surveyData } from '../../constants';
 
 export const Surveys = () => {
   const [activeTab, setActiveTab] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
   const { success, danger, warning, info } = useToastHelpers();
+  const {
+    isOpen: isCreateModalOpen,
+    openModal: openCreateModal,
+    closeModal: closeCreateModal,
+  } = useModal();
 
   const statusCounts = useMemo(() => {
     const counts = surveyData.reduce((acc, survey) => {
@@ -82,10 +89,7 @@ export const Surveys = () => {
     usePagination(filteredSurveys, 8);
 
   const handleCreateSurvey = () => {
-    success(
-      'Survey Created!',
-      'Your new survey has been created successfully.'
-    );
+    openCreateModal();
   };
 
   const handleDeleteSurvey = (surveyTitle) => {
@@ -319,6 +323,12 @@ export const Surveys = () => {
           totalItems={totalItems}
           itemsPerPage={8}
           onPageChange={setCurrentPage}
+        />
+
+        {/* Create Survey Modal */}
+        <CreateSurveyModal
+          isOpen={isCreateModalOpen}
+          onClose={closeCreateModal}
         />
       </div>
     </div>

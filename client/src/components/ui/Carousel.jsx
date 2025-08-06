@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import '../../styles/Carousel.css';
 
 export const Carousel = ({ carouselSlides }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -31,7 +30,7 @@ export const Carousel = ({ carouselSlides }) => {
     <div className="w-full lg:flex-1 h-64 sm:h-80 lg:h-auto bg-[#0075BE] relative overflow-hidden">
       <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
         <div
-          className="carousel-container flex w-full"
+          className="carousel-container flex w-full transition-transform duration-500 ease-in-out"
           style={{
             transform: `translateX(-${currentSlide * 100}%)`,
             width: `${carouselSlides.length * 100}%`,

@@ -58,10 +58,12 @@ export const Layout = ({ children }) => {
   const SidebarContent = ({ isMobile = false }) => (
     <>
       {/* Logo and Toggle */}
-      <div className="mb-8 px-4 flex items-center relative">
-        <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center flex-shrink-0 relative z-10">
-          <span className="text-[#0075BE] font-bold text-lg">H</span>
-        </div>
+      <div className="mb-8 px-5 flex items-center relative">
+        <Link to="/">
+          <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center flex-shrink-0 relative z-10">
+            <span className="text-[#0075BE] font-bold text-lg">H</span>
+          </div>
+        </Link>
         <span
           className={`ml-3 text-white font-semibold text-lg ${isMobile ? '' : 'logo-text'}`}
         >

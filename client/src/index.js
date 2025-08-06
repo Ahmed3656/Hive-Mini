@@ -9,7 +9,8 @@ import {
 import './index.css';
 
 import { App, Surveys, ErrorPage } from './app/';
-import { ToastProvider } from './components/ui/Toast';
+import { ToastProvider } from './components/ui';
+import { LoadingProvider } from './components/shared';
 
 const router = createBrowserRouter([
   {
@@ -90,8 +91,10 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <ToastProvider>
-      <RouterProvider router={router} />
-    </ToastProvider>
+    <LoadingProvider>
+      <ToastProvider>
+        <RouterProvider router={router} />
+      </ToastProvider>
+    </LoadingProvider>
   </React.StrictMode>
 );

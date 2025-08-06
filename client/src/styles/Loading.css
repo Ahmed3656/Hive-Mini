@@ -1,0 +1,76 @@
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse-scale {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.7;
+  }
+}
+
+@keyframes wave {
+  0%,
+  60%,
+  100% {
+    transform: initial;
+  }
+  30% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes orbit {
+  0% {
+    transform: rotate(0deg) translateX(30px) rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg) translateX(30px) rotate(-360deg);
+  }
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.spin-slow {
+  animation: spin-slow 2s linear infinite;
+}
+.pulse-scale {
+  animation: pulse-scale 1.5s ease-in-out infinite;
+}
+.wave-1 {
+  animation: wave 1.4s ease-in-out infinite;
+}
+.wave-2 {
+  animation: wave 1.4s ease-in-out infinite 0.2s;
+}
+.wave-3 {
+  animation: wave 1.4s ease-in-out infinite 0.4s;
+}
+.orbit {
+  animation: orbit 2s linear infinite;
+}
+.gradient-shift {
+  background: linear-gradient(-45deg, #0075BE, #0099E6, #FAB900, #FFD75E);
+  background-size: 400% 400%;
+  animation: gradient-shift 3s ease infinite;
+}

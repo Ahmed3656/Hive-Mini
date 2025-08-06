@@ -8,6 +8,7 @@ import {
   Checkbox,
   useToastHelpers,
 } from '../../components/ui';
+import { useGlobalLoading } from '../../components/shared';
 
 const carouselSlides = [
   {
@@ -35,13 +36,16 @@ export const LoginPage = ({ onLogin }) => {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
-  const [loading, setLoading] = useState(false);
 
   const { success, danger } = useToastHelpers();
+  const { startLoading, stopLoading } = useGlobalLoading();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
+    startLoading('logging in', '', {
+      type: 'gradient',
+      size: 'sm',
+    });
 
     try {
       const response = await fetch(
@@ -75,7 +79,7 @@ export const LoginPage = ({ onLogin }) => {
     } catch (err) {
       danger('Network error.', 'Please check your connection and try again.');
     } finally {
-      setLoading(false);
+      setTimeout(() => stopLoading(), 2000);
     }
   };
 
@@ -86,14 +90,6 @@ export const LoginPage = ({ onLogin }) => {
       setRememberMe(true);
     }
   }, []);
-
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center h-screen">
-        Loading...
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen flex sm:flex-row">
