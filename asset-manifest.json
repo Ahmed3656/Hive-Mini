@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Hive-mini/static/css/main.70b8b4af.css",
+    "main.js": "/Hive-mini/static/js/main.10fbe3ed.js",
+    "index.html": "/Hive-mini/index.html",
+    "main.70b8b4af.css.map": "/Hive-mini/static/css/main.70b8b4af.css.map",
+    "main.10fbe3ed.js.map": "/Hive-mini/static/js/main.10fbe3ed.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.70b8b4af.css",
+    "static/js/main.10fbe3ed.js"
+  ]
+}
