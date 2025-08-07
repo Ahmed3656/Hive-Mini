@@ -28,7 +28,11 @@ import {
   usePagination,
   useToastHelpers,
 } from '../../components/ui';
-import { CreateSurveyModal, ViewSurveyModal } from '../../components/core';
+import {
+  CreateSurveyModal,
+  ViewSurveyModal,
+  ConfirmAction,
+} from '../../components/core';
 import { useGlobalLoading } from '../../components/shared';
 
 // API service functions
@@ -85,6 +89,8 @@ export const Surveys = () => {
   const [dateFilter, setDateFilter] = useState('');
   const [surveys, setSurveys] = useState([]);
   const [selectedSurvey, setSelectedSurvey] = useState(null);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [surveyToDelete, setSurveyToDelete] = useState(null);
 
   const { success, danger, warning, info } = useToastHelpers();
   const { startLoading, stopLoading } = useGlobalLoading();
@@ -211,10 +217,16 @@ export const Surveys = () => {
     openViewModal();
   };
 
-  const handleDeleteSurvey = async (survey) => {
+  const handleDeleteSurvey = (survey) => {
+    setSurveyToDelete(survey);
+    setShowDeleteConfirm(true);
+  };
+
+  const handleConfirmDelete = async () => {
     try {
-      const surveyId = survey.ID || survey.id;
-      const surveyTitle = survey.Title || survey.title || 'Unknown Survey';
+      const surveyId = surveyToDelete.ID || surveyToDelete.id;
+      const surveyTitle =
+        surveyToDelete.Title || surveyToDelete.title || 'Unknown Survey';
 
       startLoading('Deleting survey', 'This may take a moment...', {
         type: 'spinner',
@@ -222,7 +234,6 @@ export const Surveys = () => {
 
       await surveyAPI.delete(surveyId);
 
-      // Remove the deleted survey from the state
       setSurveys((prevSurveys) =>
         prevSurveys.filter((s) => (s.ID || s.id) !== surveyId)
       );
@@ -234,8 +245,15 @@ export const Surveys = () => {
     } catch (error) {
       danger('Delete Failed', error.message);
     } finally {
+      setShowDeleteConfirm(false);
+      setSurveyToDelete(null);
       stopLoading();
     }
+  };
+
+  const handleCancelDelete = () => {
+    setShowDeleteConfirm(false);
+    setSurveyToDelete(null);
   };
 
   const handleCopySurvey = (survey) => {
@@ -533,6 +551,16 @@ export const Surveys = () => {
           survey={selectedSurvey}
           onDelete={handleDeleteSurvey}
         />
+
+        {/* Confirm Action component for deleting surveys */}
+        {showDeleteConfirm && (
+          <ConfirmAction
+            action="delete"
+            surveyData={surveyToDelete}
+            onCancel={handleCancelDelete}
+            onConfirm={handleConfirmDelete}
+          />
+        )}
       </div>
     </div>
   );

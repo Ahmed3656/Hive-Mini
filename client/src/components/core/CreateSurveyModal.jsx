@@ -21,6 +21,29 @@ const CURRENT_USER = {
   name: 'Basem Shawaly',
 };
 
+// API service function
+const createSurvey = async (surveyData) => {
+  const response = await fetch(
+    `${process.env.REACT_APP_API_URL}/API/Survey/Add`,
+    {
+      method: 'POST',
+      body: JSON.stringify(surveyData),
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+
+  const result = await response.json();
+
+  if (result.Error) {
+    throw new Error(result.Error.Message || 'Failed to create survey');
+  }
+
+  return result;
+};
+
 export const CreateSurveyModal = ({ isOpen, onClose, onSurveyCreated }) => {
   const [formData, setFormData] = useState({
     title: '',
@@ -60,7 +83,6 @@ export const CreateSurveyModal = ({ isOpen, onClose, onSurveyCreated }) => {
     }));
   };
 
-  // Validate form
   const validateForm = () => {
     const newErrors = {};
 
@@ -83,7 +105,19 @@ export const CreateSurveyModal = ({ isOpen, onClose, onSurveyCreated }) => {
     return Object.keys(newErrors).length === 0;
   };
 
-  // Handle form submission
+  const transformDataForAPI = (data) => {
+    return {
+      Title: data.title,
+      Status: data.status,
+      CreatedBy: data.createdBy,
+      ModifiedAt: data.modifiedAt.toISOString(),
+      ModifiedBy: data.modifiedBy,
+      Type: data.type,
+      Language: data.language,
+      Responses: data.responses,
+    };
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -97,16 +131,22 @@ export const CreateSurveyModal = ({ isOpen, onClose, onSurveyCreated }) => {
     });
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const apiData = transformDataForAPI(formData);
+      const response = await createSurvey(apiData);
 
       success(
         'Survey Created!',
         `"${formData.title}" has been created successfully`
       );
-      onSurveyCreated?.(formData);
+
+      onSurveyCreated?.(response.Result || formData);
       onClose();
     } catch (error) {
-      danger('Error', 'Failed to create survey. Please try again.');
+      console.error('Error creating survey:', error);
+      danger(
+        'Error',
+        error.message || 'Failed to create survey. Please try again.'
+      );
     } finally {
       stopLoading();
     }
