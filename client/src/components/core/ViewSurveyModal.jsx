@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Badge, Button, Modal, useToastHelpers } from '../ui';
-import { ConfirmAction } from './ConfirmAction';
 import { Download, Share2, Copy, Trash2, ExternalLink } from 'lucide-react';
 
 export const ViewSurveyModal = ({ isOpen, onClose, survey, onDelete }) => {
-  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const { success, info } = useToastHelpers();
 
   if (!survey) return null;
@@ -70,14 +68,10 @@ export const ViewSurveyModal = ({ isOpen, onClose, survey, onDelete }) => {
     info('Opening Preview', 'Survey preview will open in a new tab');
   };
 
+  // Simply call the parent's delete handler - it will handle confirmation
   const handleDelete = () => {
-    setShowDeleteConfirm(true);
-  };
-
-  const handleConfirmDelete = () => {
     onDelete?.(survey);
-    setShowDeleteConfirm(false);
-    onClose();
+    onClose(); // Close the view modal
   };
 
   const getStatusVariant = (status) => {
@@ -334,16 +328,6 @@ export const ViewSurveyModal = ({ isOpen, onClose, survey, onDelete }) => {
           </Button>
         </div>
       </div>
-
-      {/* Delete Confirmation Modal */}
-      {showDeleteConfirm && (
-        <ConfirmAction
-          action="delete"
-          surveyData={surveyData}
-          onCancel={() => setShowDeleteConfirm(false)}
-          onConfirm={handleConfirmDelete}
-        />
-      )}
     </Modal>
   );
 };
